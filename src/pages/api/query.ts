@@ -13,7 +13,8 @@ const queryApi: QueryApi = influxDB.getQueryApi(org);
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const fluxQuery = `from(bucket: "Cars")
   |> range(start: -12h)
-  |> filter(fn: (r) => r._field == "speed" and r.brand == "Audi")`;
+  |> filter(fn: (r) => r._measurement == "Car")
+  |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")`
 
     try {
         //eslint-disable-next-line

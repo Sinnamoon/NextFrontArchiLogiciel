@@ -10,7 +10,7 @@ export default function InfluxData() {
             fetchInfluxData()
                 .then(setData)
                 .catch(setError);
-        }, 5000); // Poll every 5 seconds
+        }, 3000); // Poll every 3 seconds
 
         // Fetch data initially
         fetchInfluxData()
